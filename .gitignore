@@ -1,0 +1,10 @@
+#dependencies
+/node_modules
+
+#production
+/dist
+
+#testing
+/coverage
+
+/npm-debug.log
