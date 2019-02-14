@@ -5,6 +5,9 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+import store from './store/store';
 
 import Navigation from './components/navigation/Navigation';
 import Home from './components/home/Home';
@@ -26,4 +29,9 @@ const App = () => (
   </Router>
 );
 
-ReactDOM.render(<App />, ROOT);
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  ROOT
+);
