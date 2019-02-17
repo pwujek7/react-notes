@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import {
-  BrowserRouter as Router,
+  HashRouter,
   Switch,
   Route
 } from 'react-router-dom';
@@ -17,7 +17,7 @@ import AddNote from './components/addNote/AddNote';
 const ROOT = document.getElementById('root');
 
 const App = () => (
-  <Router>
+  <HashRouter>
     <Fragment>
       <Navigation />
       <Switch>
@@ -26,7 +26,7 @@ const App = () => (
         <Route path="/:filter" component={Notes} />
       </Switch>
     </Fragment>
-  </Router>
+  </HashRouter>
 );
 
 ReactDOM.render(
