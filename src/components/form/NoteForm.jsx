@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import uuidv1 from 'uuid';
+
+import { addNote } from '../../actions/notesActions';
 
 import Input from './Input';
 import DayPickerInput from './DayPickerInput';
@@ -10,7 +15,7 @@ class NoteForm extends Component {
     day: null
   }
 
-  handleChange = (event) => {
+  handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
@@ -21,8 +26,9 @@ class NoteForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { title, content, day } = this.state;
+    const id = uuidv1();
 
-    console.log(title, content, day);
+    this.props.addNote({ id, title, content, day });
 
     this.setState({
       title: '',
@@ -36,8 +42,8 @@ class NoteForm extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <Input onChange={this.handleChange} type="text" value={title} name="title" />
-        <Input onChange={this.handleChange} type="text" value={content} name="content" />
+        <Input onChange={this.handleInputChange} type="text" value={title} name="title" />
+        <Input onChange={this.handleInputChange} type="text" value={content} name="content" />
         <DayPickerInput onChange={this.handleDayChange} value={day} name="day" />
         <button type="submit">SAVE</button>
       </form>
@@ -45,4 +51,12 @@ class NoteForm extends Component {
   }
 }
 
-export default NoteForm;
+NoteForm.propTypes = {
+  addNote: PropTypes.func.isRequired
+};
+
+const mapDispatchToProps = {
+  addNote
+};
+
+export default connect(null, mapDispatchToProps)(NoteForm);
