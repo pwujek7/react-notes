@@ -21,7 +21,10 @@ class Input extends Component {
 Input.propTypes = {
   onChange: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool
+  ]),
   name: PropTypes.string.isRequired
 };
 

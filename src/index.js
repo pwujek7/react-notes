@@ -11,7 +11,7 @@ import store from './store/store';
 
 import Navigation from './components/navigation/Navigation';
 import Home from './components/home/Home';
-import Notes from './components/notes/Notes';
+import NotesList from './components/notes/NotesList';
 import AddNote from './components/addNote/AddNote';
 
 const ROOT = document.getElementById('root');
@@ -23,7 +23,7 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/add-note" component={AddNote} />
-        <Route path="/:filter" component={Notes} />
+        <Route path="/:filter" component={NotesList} />
       </Switch>
     </Fragment>
   </HashRouter>
