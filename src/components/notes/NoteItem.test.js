@@ -23,4 +23,18 @@ describe('<NoteItem />', () => {
     expect(noteItem.find('p')).toHaveLength(3);
     expect(noteItem.find('Checkbox')).toHaveLength(2);
   });
+
+  it('calls toggleFinish() method and changes isFinished to opposite value', () => {
+    const noteItem = shallow(<NoteItem note={note} />);
+
+    noteItem.instance().toggleFinish();
+    expect(noteItem.state().isFinished).toEqual(true);
+  });
+
+  it('calls toggleImportant() method and changes isImportant to opposite value', () => {
+    const noteItem = shallow(<NoteItem note={note} />);
+
+    noteItem.instance().toggleImportant();
+    expect(noteItem.state().isImportant).toEqual(true);
+  });
 });
