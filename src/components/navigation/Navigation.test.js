@@ -12,7 +12,7 @@ describe('<Navigation />', () => {
   });
 
   it('renders navigation list with 5 links', () => {
-    expect(navigation.find(Link)).toHaveLength(5);
+    expect(navigation.find(Link)).toHaveLength(6);
   });
 
   it('renders navigation links and each of the link has "to" property defined', () => {

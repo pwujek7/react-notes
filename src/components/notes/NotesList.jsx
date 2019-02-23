@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import NoteItem from './NoteItem';
 
+import { getFilteredNotes } from '../../utilities/notes';
+
 const NotesList = ({ notes }) => (
   <div>
     {
@@ -18,9 +20,9 @@ NotesList.propTypes = {
   notes: PropTypes.arrayOf(PropTypes.object)
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    notes: state.notes
+    notes: getFilteredNotes(state.notes, ownProps.match.params.filter)
   };
 };
 
