@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Checkbox from '../form/fields/Checkbox';
 
-class NoteItem extends Component {
+import { toggleFinish, toggleImportant } from '../../actions/notesActions';
+
+export class NoteItem extends Component {
   state = {
     isFinished: this.props.note.isFinished,
     isImportant: this.props.note.isImportant
   }
 
-  toggleImportant = () => {
-    this.setState((prevState) => ({ isImportant: !prevState.isImportant }));
+  changeFinish = () => {
+    const { note, toggleFinish } = this.props;
+    this.setState((prevState) => ({ isFinished: !prevState.isFinished }));
+    toggleFinish(note.id);
   }
 
-  toggleFinish = () => {
-    this.setState((prevState) => ({ isFinished: !prevState.isFinished }));
+  changeImportant = () => {
+    const { note, toggleImportant } = this.props;
+    this.setState((prevState) => ({ isImportant: !prevState.isImportant }));
+    toggleImportant(note.id);
   }
 
   render() {
@@ -28,13 +35,13 @@ class NoteItem extends Component {
         <p>{day.toLocaleString()}</p>
         <Checkbox
           name="isFinished"
-          onChange={this.toggleFinish}
+          onChange={this.changeFinish}
           value={isFinished}
           checked={isFinished}
         />
         <Checkbox
           name="isImportant"
-          onChange={this.toggleImportant}
+          onChange={this.changeImportant}
           value={isImportant}
           checked={isImportant}
         />
@@ -44,7 +51,14 @@ class NoteItem extends Component {
 }
 
 NoteItem.propTypes = {
-  note: PropTypes.object.isRequired
+  note: PropTypes.object.isRequired,
+  toggleFinish: PropTypes.func,
+  toggleImportant: PropTypes.func
 };
 
-export default NoteItem;
+const mapDispatchToProps = {
+  toggleFinish,
+  toggleImportant
+};
+
+export default connect(null, mapDispatchToProps)(NoteItem);

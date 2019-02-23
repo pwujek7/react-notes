@@ -1,13 +1,35 @@
 import notesReducer from './notesReducer';
-import { addNote } from '../actions/notesActions';
+import {
+  addNote,
+  toggleFinish,
+  toggleImportant
+} from '../actions/notesActions';
 
-describe('notesRecuder()', () => {
+describe('notesReducer()', () => {
   const initialState = [];
   const note = {
     id: 1,
     title: 'test title',
     content: 'test content',
-    date: new Date()
+    day: new Date()
+  };
+
+  const noteTwo = {
+    id: 2,
+    title: 'test title 2',
+    content: 'test content 2',
+    day: new Date(),
+    isFinished: false,
+    isImportant: false
+  };
+
+  const noteThree = {
+    id: 3,
+    title: 'test title 3',
+    content: 'test content 3',
+    day: new Date(),
+    isFinished: false,
+    isImportant: false
   };
 
   it('returns initial state if no action is defined', () => {
@@ -71,6 +93,34 @@ describe('notesRecuder()', () => {
     expect(state).toEqual([
       {
         ...noteOne
+      }
+    ]);
+  });
+
+  it('returns new state with finished notes', () => {
+    const state = notesReducer([noteTwo, noteThree], toggleFinish(noteTwo.id));
+
+    expect(state).toEqual([
+      {
+        ...noteTwo,
+        isFinished: true
+      },
+      {
+        ...noteThree
+      }
+    ]);
+  });
+
+  it('returns new state with important notes', () => {
+    const state = notesReducer([noteTwo, noteThree], toggleImportant(noteThree.id));
+
+    expect(state).toEqual([
+      {
+        ...noteTwo
+      },
+      {
+        ...noteThree,
+        isImportant: true
       }
     ]);
   });
