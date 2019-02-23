@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class Input extends Component {
+class TextInput extends Component {
   handleInputChange = (event) => {
     this.props.onChange(event);
   }
 
   render() {
-    const { type, value, name } = this.props;
+    const { value, name } = this.props;
 
     return (
       <div>
         <label htmlFor={name}>{name}</label>
-        <input onChange={this.handleInputChange} id={name} type={type} value={value} name={name} />
+        <input
+          name={name}
+          onChange={this.handleInputChange}
+          id={name}
+          type="text"
+          value={value}
+        />
       </div>
     );
   }
 }
 
-Input.propTypes = {
+TextInput.propTypes = {
+  name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool
-  ]),
-  name: PropTypes.string.isRequired
+  ])
 };
 
-export default Input;
+export default TextInput;

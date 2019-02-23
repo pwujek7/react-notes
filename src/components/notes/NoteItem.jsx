@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Input from '../form/Input';
+import Checkbox from '../form/fields/Checkbox';
 
 class NoteItem extends Component {
   state = {
@@ -9,8 +9,12 @@ class NoteItem extends Component {
     isImportant: this.props.note.isImportant
   }
 
-  handleInputChange = (event) => {
-    this.setState({ [event.target.name]: !event.target.value });
+  toggleImportant = () => {
+    this.setState((prevState) => ({ isImportant: !prevState.isImportant }));
+  }
+
+  toggleFinish = () => {
+    this.setState((prevState) => ({ isFinished: !prevState.isFinished }));
   }
 
   render() {
@@ -22,8 +26,18 @@ class NoteItem extends Component {
         <p>{title}</p>
         <p>{content}</p>
         <p>{day.toLocaleString()}</p>
-        <Input onChange={this.handleInputChange} type="checkbox" value={isFinished} name="isFinished" />
-        <Input onChange={this.handleInputChange} type="checkbox" value={isImportant} name="isImportant" />
+        <Checkbox
+          name="isFinished"
+          onChange={this.toggleFinish}
+          value={isFinished}
+          checked={isFinished}
+        />
+        <Checkbox
+          name="isImportant"
+          onChange={this.toggleImportant}
+          value={isImportant}
+          checked={isImportant}
+        />
       </div>
     );
   }
