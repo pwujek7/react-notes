@@ -2,7 +2,8 @@ import notesReducer from './notesReducer';
 import {
   addNote,
   toggleFinish,
-  toggleImportant
+  toggleImportant,
+  deleteNote
 } from '../actions/notesActions';
 
 describe('notesReducer()', () => {
@@ -121,6 +122,16 @@ describe('notesReducer()', () => {
       {
         ...noteThree,
         isImportant: true
+      }
+    ]);
+  });
+
+  it('returns new state without deleted notes', () => {
+    const state = notesReducer([noteTwo, noteThree], deleteNote(noteThree.id));
+
+    expect(state).toEqual([
+      {
+        ...noteTwo
       }
     ]);
   });

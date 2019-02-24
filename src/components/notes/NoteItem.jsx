@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 
 import Checkbox from '../form/fields/Checkbox';
 
-import { toggleFinish, toggleImportant } from '../../actions/notesActions';
+import {
+  toggleFinish,
+  toggleImportant,
+  deleteNote
+} from '../../actions/notesActions';
 
 export class NoteItem extends Component {
   state = {
@@ -22,6 +26,11 @@ export class NoteItem extends Component {
     const { note, toggleImportant } = this.props;
     this.setState((prevState) => ({ isImportant: !prevState.isImportant }));
     toggleImportant(note.id);
+  }
+
+  handleDelete = () => {
+    const { note, deleteNote } = this.props;
+    deleteNote(note.id);
   }
 
   render() {
@@ -45,6 +54,7 @@ export class NoteItem extends Component {
           value={isImportant}
           checked={isImportant}
         />
+        <button type="button" onClick={this.handleDelete}>Delete</button>
       </div>
     );
   }
@@ -53,12 +63,14 @@ export class NoteItem extends Component {
 NoteItem.propTypes = {
   note: PropTypes.object.isRequired,
   toggleFinish: PropTypes.func,
-  toggleImportant: PropTypes.func
+  toggleImportant: PropTypes.func,
+  deleteNote: PropTypes.func
 };
 
 const mapDispatchToProps = {
   toggleFinish,
-  toggleImportant
+  toggleImportant,
+  deleteNote
 };
 
 export default connect(null, mapDispatchToProps)(NoteItem);

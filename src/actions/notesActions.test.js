@@ -2,20 +2,24 @@ import {
   addNote,
   toggleFinish,
   toggleImportant,
+  deleteNote,
   ADD_NOTE,
   TOGGLE_FINISH,
-  TOGGLE_IMPORTANT
+  TOGGLE_IMPORTANT,
+  DELETE_NOTE
 } from './notesActions';
 
 describe('notes actions', () => {
-  it('calls addNote() action and creates note', () => {
-    const note = {
-      id: 1,
-      title: 'test title',
-      content: 'test content',
-      day: new Date()
-    };
+  const note = {
+    id: 1,
+    title: 'test title',
+    content: 'test content',
+    day: new Date(),
+    isFinished: false,
+    isImportant: false
+  };
 
+  it('calls addNote() action and creates note', () => {
     const expectedAction = {
       type: ADD_NOTE,
       payload: note
@@ -25,14 +29,6 @@ describe('notes actions', () => {
   });
 
   it('calls toggleFinish() action and changes isFinished value', () => {
-    const note = {
-      id: 1,
-      title: 'test title',
-      content: 'test content',
-      day: new Date(),
-      isFinished: false
-    };
-
     const expectedAction = {
       type: TOGGLE_FINISH,
       payload: note.id
@@ -42,19 +38,20 @@ describe('notes actions', () => {
   });
 
   it('calls toggleImportant() action and changes isImportant value', () => {
-    const note = {
-      id: 1,
-      title: 'test title',
-      content: 'test content',
-      day: new Date(),
-      isImportant: false
-    };
-
     const expectedAction = {
       type: TOGGLE_IMPORTANT,
       payload: note.id
     };
 
     expect(toggleImportant(note.id)).toEqual(expectedAction);
+  });
+
+  it('calls deleteNote() action and deletes note', () => {
+    const expectedAction = {
+      type: DELETE_NOTE,
+      payload: note.id
+    };
+
+    expect(deleteNote(note.id)).toEqual(expectedAction);
   });
 });
