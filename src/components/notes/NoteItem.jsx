@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Checkbox from '../form/fields/Checkbox';
 
@@ -35,7 +36,7 @@ export class NoteItem extends Component {
 
   render() {
     const { isFinished, isImportant } = this.state;
-    const { title, content, day } = this.props.note;
+    const { id, title, content, day } = this.props.note;
 
     return (
       <div>
@@ -55,6 +56,7 @@ export class NoteItem extends Component {
           checked={isImportant}
         />
         <button type="button" onClick={this.handleDelete}>Delete</button>
+        <Link to={`/add-note/${id}`}>Edit</Link>
       </div>
     );
   }

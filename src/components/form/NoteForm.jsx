@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuidv1 from 'uuid';
 
-import { addNote } from '../../actions/notesActions';
+import { addNote, editNote } from '../../actions/notesActions';
 
 import TextInput from './fields/TextInput';
 import DayPickerInput from './fields/DayPickerInput';
 
 class NoteForm extends Component {
   state = {
-    title: '',
-    content: '',
-    day: null
+    title: !this.props.note.length ? '' : this.props.note[0].title,
+    content: !this.props.note.length ? '' : this.props.note[0].content,
+    day: !this.props.note.length ? '' : this.props.note[0].day
   }
 
   handleInputChange = (event) => {
@@ -26,9 +26,14 @@ class NoteForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { title, content, day } = this.state;
-    const id = uuidv1();
+    const { noteId: id, addNote, editNote } = this.props;
 
-    this.props.addNote({ id, title, content, day });
+    if (id) {
+      editNote({ id, title, content, day });
+    } else {
+      const id = uuidv1();
+      addNote({ id, title, content, day });
+    }
 
     this.setState({
       title: '',
@@ -52,11 +57,21 @@ class NoteForm extends Component {
 }
 
 NoteForm.propTypes = {
-  addNote: PropTypes.func.isRequired
+  addNote: PropTypes.func.isRequired,
+  editNote: PropTypes.func,
+  note: PropTypes.array,
+  noteId: PropTypes.string
+};
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    note: state.notes.filter(note => note.id === ownProps.noteId)
+  };
 };
 
 const mapDispatchToProps = {
-  addNote
+  addNote,
+  editNote
 };
 
-export default connect(null, mapDispatchToProps)(NoteForm);
+export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);

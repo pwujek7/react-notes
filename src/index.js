@@ -22,6 +22,7 @@ const App = () => (
       <Navigation />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/add-note/:noteId" component={AddNote} />
         <Route path="/add-note" component={AddNote} />
         <Route path="/:filter" component={NotesList} />
       </Switch>

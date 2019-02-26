@@ -2,7 +2,8 @@ import {
   ADD_NOTE,
   TOGGLE_FINISH,
   TOGGLE_IMPORTANT,
-  DELETE_NOTE
+  DELETE_NOTE,
+  EDIT_NOTE
 } from '../actions/notesActions';
 
 const notesReducer = (state = [], action) => {
@@ -45,6 +46,19 @@ const notesReducer = (state = [], action) => {
 
     case DELETE_NOTE: {
       const updatedNotes = state.filter(note => note.id !== action.payload);
+
+      return [...updatedNotes];
+    }
+
+    case EDIT_NOTE: {
+      const updatedNotes = state.map(note => {
+        return note.id === action.payload.id
+          ? {
+            ...action.payload,
+            isFinished: note.isFinished,
+            isImportant: note.isImportant
+          } : note;
+      });
 
       return [...updatedNotes];
     }
