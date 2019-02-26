@@ -3,7 +3,8 @@ import {
   addNote,
   toggleFinish,
   toggleImportant,
-  deleteNote
+  deleteNote,
+  editNote
 } from '../actions/notesActions';
 
 describe('notesReducer()', () => {
@@ -128,6 +129,26 @@ describe('notesReducer()', () => {
 
   it('returns new state without deleted notes', () => {
     const state = notesReducer([noteTwo, noteThree], deleteNote(noteThree.id));
+
+    expect(state).toEqual([
+      {
+        ...noteTwo
+      }
+    ]);
+  });
+
+  it('returns new state with edited notes', () => {
+    const state = notesReducer([noteTwo], editNote(noteTwo));
+
+    expect(state).toEqual([
+      {
+        ...noteTwo
+      }
+    ]);
+  });
+
+  it('returns new state with no edited notes', () => {
+    const state = notesReducer([noteTwo], editNote(noteThree));
 
     expect(state).toEqual([
       {
