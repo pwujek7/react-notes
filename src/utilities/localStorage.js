@@ -21,3 +21,8 @@ export const saveStateToLocalStorage = (state) => {
     return false;
   }
 };
+
+export const clearLocalStorage = () => {
+  localStorage.clear();
+  window.location.reload();
+};

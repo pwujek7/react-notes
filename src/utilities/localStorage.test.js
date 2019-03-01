@@ -1,4 +1,8 @@
-import { loadStateFromLocalStorage, saveStateToLocalStorage } from './localStorage';
+import {
+  loadStateFromLocalStorage,
+  saveStateToLocalStorage,
+  clearLocalStorage
+} from './localStorage';
 
 describe('localStorage utils', () => {
   let originalLocalStorage;
@@ -10,14 +14,20 @@ describe('localStorage utils', () => {
       writable: true,
       value: {
         getItem: jest.fn().mockName('getItem'),
-        setItem: jest.fn().mockName('setItem')
+        setItem: jest.fn().mockName('setItem'),
+        clear: jest.fn().mockName('clear')
       }
+    });
+    Object.defineProperty(window.location, 'reload', {
+      configurable: true,
     });
   });
 
   beforeEach(() => {
     localStorage.getItem.mockClear();
     localStorage.setItem.mockClear();
+    localStorage.clear.mockClear();
+    window.location.reload = jest.fn();
   });
 
   afterAll(() => {
@@ -72,5 +82,15 @@ describe('localStorage utils', () => {
     const result = saveStateToLocalStorage(data);
 
     expect(result).toEqual(false);
+  });
+
+  it('calls clearLocalStorage() and deletes data from localStorage', () => {
+    localStorage.clear.mockReturnValueOnce(null);
+
+    const result = clearLocalStorage();
+
+    expect(result).toEqual(undefined);
+    expect(localStorage.clear).toHaveBeenCalledTimes(1);
+    expect(window.location.reload).toHaveBeenCalledTimes(1);
   });
 });
