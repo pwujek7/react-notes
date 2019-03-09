@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import NoteForm from '../form/NoteForm';
 
+const StyledAddNote = styled.div`
+  position: relative;
+`;
+
 const AddNote = (props) => (
-  <div>
-    <h1>Add note view</h1>
+  <StyledAddNote>
     <NoteForm noteId={props.match.params.noteId} />
-  </div>
+  </StyledAddNote>
 );
 
 AddNote.propTypes = {

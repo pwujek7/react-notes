@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import uuidv1 from 'uuid';
+import styled from 'styled-components';
 
 import { addNote, editNote } from '../../actions/notesActions';
 
 import TextInput from './fields/TextInput';
 import DayPickerInput from './fields/DayPickerInput';
+
+const StyledForm = styled.form`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 class NoteForm extends Component {
   state = {
@@ -46,12 +54,12 @@ class NoteForm extends Component {
     const { title, content, day } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <StyledForm onSubmit={this.handleSubmit}>
         <TextInput onChange={this.handleInputChange} value={title} name="title" />
         <TextInput onChange={this.handleInputChange} value={content} name="content" />
         <DayPickerInput onChange={this.handleDayChange} value={day} name="day" />
         <button type="submit">SAVE</button>
-      </form>
+      </StyledForm>
     );
   }
 }

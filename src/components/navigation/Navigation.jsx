@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { clearLocalStorage } from '../../utilities/localStorage';
+
+const StyledNav = styled.nav`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  padding: 50px;
+`;
+
+const StyledUl = styled.ul`
+  list-style-type: none;
+  margin-bottom: 50px;
+`;
+
+const StyledLi = styled.li`
+  margin: 10px 0;
+`;
 
 class Navigation extends Component {
   handleClick = () => {
@@ -10,29 +28,29 @@ class Navigation extends Component {
 
   render() {
     return (
-      <nav>
-        <ul>
-          <li>
+      <StyledNav>
+        <StyledUl>
+          <StyledLi>
             <Link to="/">Home</Link>
-          </li>
-          <li>
+          </StyledLi>
+          <StyledLi>
             <Link to="/all">All</Link>
-          </li>
-          <li>
+          </StyledLi>
+          <StyledLi>
             <Link to="/important">Important</Link>
-          </li>
-          <li>
+          </StyledLi>
+          <StyledLi>
             <Link to="/finished">Finished</Link>
-          </li>
-          <li>
+          </StyledLi>
+          <StyledLi>
             <Link to="/expired">Expired</Link>
-          </li>
-          <li>
+          </StyledLi>
+          <StyledLi>
             <Link to="/add-note">Add note</Link>
-          </li>
-        </ul>
+          </StyledLi>
+        </StyledUl>
         <button type="button" onClick={this.handleClick}>Delete all notes</button>
-      </nav>
+      </StyledNav>
     );
   }
 }
