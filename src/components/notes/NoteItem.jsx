@@ -11,6 +11,8 @@ import {
   deleteNote
 } from '../../actions/notesActions';
 
+import { getDayOfMonth, getDayOfWeek, getMonth } from '../../utilities/date';
+
 export class NoteItem extends Component {
   state = {
     isFinished: this.props.note.isFinished,
@@ -37,12 +39,17 @@ export class NoteItem extends Component {
   render() {
     const { isFinished, isImportant } = this.state;
     const { id, title, content, day } = this.props.note;
+    const dayOfMonth = getDayOfMonth(day);
+    const dayOfWeek = getDayOfWeek(day);
+    const month = getMonth(day);
 
     return (
       <div>
         <p>{title}</p>
         <p>{content}</p>
-        <p>{day.toLocaleString()}</p>
+        <p>{dayOfMonth}</p>
+        <p>{dayOfWeek}</p>
+        <p>{month}</p>
         <Checkbox
           name="isFinished"
           onChange={this.changeFinish}

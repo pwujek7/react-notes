@@ -28,7 +28,7 @@ describe('<NoteItem />', () => {
   it('renders without errors and with proper elements', () => {
     const noteItem = shallow(<NoteItem note={note} />);
 
-    expect(noteItem.find('p')).toHaveLength(3);
+    expect(noteItem.find('p')).toHaveLength(5);
     expect(noteItem.find('Checkbox')).toHaveLength(2);
   });
 
