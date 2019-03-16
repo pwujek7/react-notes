@@ -10,7 +10,8 @@ import { getFilteredNotes } from '../../utilities/notes';
 const NotesGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 25px;
+  grid-gap: 50px;
+  margin: 50px;
 `;
 
 const NotesList = ({ notes }) => (

@@ -6,6 +6,7 @@ import NoteForm from '../form/NoteForm';
 
 const StyledAddNote = styled.div`
   position: relative;
+  height: 100%;
 `;
 
 const AddNote = (props) => (
