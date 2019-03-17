@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Checkbox from '../form/fields/Checkbox';
@@ -90,6 +90,22 @@ const StyledTitle = styled.p`
   left: 25px;
 `;
 
+const StyledDeleteButton = styled.button`
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  background-image: url('src/resources/icons/ico_delete.svg');
+`;
+
+const StyledLink = styled(NavLink)`
+  width: 24px;
+  height: 24px;
+  background-image: url('src/resources/icons/ico_edit.svg');
+`;
+
 export class NoteItem extends Component {
   state = {
     isFinished: this.props.note.isFinished,
@@ -145,8 +161,8 @@ export class NoteItem extends Component {
               value={isImportant}
               checked={isImportant}
             />
-            <button type="button" onClick={this.handleDelete}>Delete</button>
-            <Link to={`/add-note/${id}`}>Edit</Link>
+            <StyledDeleteButton type="button" onClick={this.handleDelete} />
+            <StyledLink to={`/add-note/${id}`} />
           </StyledMenuBox>
         </StyledNoteBox>
       </StyledNote>
