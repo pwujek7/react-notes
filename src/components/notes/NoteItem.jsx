@@ -19,21 +19,27 @@ const StyledNote = styled.div`
   flex-direction: column;
   flex-wrap: no-wrap;
   width: 100%;
-  border: 1px solid red;
+  border-top: 5px solid #C5DDF4;
+  background-color: #DFECF9;
 `;
 
 const StyledNoteBox = styled.div`
   position: relative;
   min-height: 100px;
+
+  &:first-child {
+    background-color: #F8FBFD;
+  }
 `;
 
 const StyledDateBox = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid green;
+  background-color: #5E91C5;
+  border-bottom: 5px solid #C5DDF4;
   position: absolute;
-  top: -25px;
-  right: 25px;
+  top: -15px;
+  right: 15px;
 `;
 
 const StyledMenuBox = styled.div`
@@ -41,18 +47,47 @@ const StyledMenuBox = styled.div`
   flex-direction: row;
   flex-wrap: no-wrap;
   height: 50px;
-  border: 1px solid yellow;
-  position: absolute;
-  bottom: -25px;
-  left: 50%;
-  transform: translateX(-50%);
+  background-color: #C5DDF4;
 `;
 
 const StyledNoteContent = styled.p`
-  height: 75px;
-  margin: 0 auto 50px auto;
-  padding: 10px;
+  height: 100px;
+  color: #5E91C5;
+  margin: 15px auto;
+  padding: 15px;
   overflow: hidden;
+`;
+
+const StyledDateText = styled.span`
+  color: #FFF;
+  text-align: center;
+  font-size: 18px;
+  font-weight: normal;
+
+  &:nth-child(2) {
+    text-transform: uppercase;
+  }
+
+  &:nth-child(3) {
+    font-size: 12px;
+    text-transform: lowercase;
+    margin-bottom: 10px;
+  }
+`;
+
+const StyledDateTextBig = styled(StyledDateText)`
+  font-size: 64px;
+  font-weight: bold;
+  margin: 0 15px;
+`;
+
+const StyledTitle = styled.p`
+  font-size: 32px;
+  font-weight: bold;
+  color: #5E91C5;
+  position: absolute;
+  bottom: -15px;
+  left: 25px;
 `;
 
 export class NoteItem extends Component {
@@ -88,11 +123,11 @@ export class NoteItem extends Component {
     return (
       <StyledNote>
         <StyledNoteBox>
-          <p>{title}</p>
+          <StyledTitle>{title}</StyledTitle>
           <StyledDateBox>
-            <span>{dayOfMonth}</span>
-            <span>{month}</span>
-            <span>{dayOfWeek}</span>
+            <StyledDateTextBig>{dayOfMonth}</StyledDateTextBig>
+            <StyledDateText>{month}</StyledDateText>
+            <StyledDateText>{dayOfWeek}</StyledDateText>
           </StyledDateBox>
         </StyledNoteBox>
         <StyledNoteBox>

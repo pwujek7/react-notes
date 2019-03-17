@@ -32,7 +32,7 @@ const GridContainer = styled.div`
 `;
 
 const StyledContainer = styled.div`
-  background-color: #96AED6;
+  background-color: #FFF;
 `;
 
 const App = () => (
