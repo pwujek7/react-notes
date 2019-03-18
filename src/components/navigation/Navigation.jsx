@@ -10,12 +10,13 @@ const StyledNav = styled.nav`
   flex-wrap: nowrap;
   justify-content: flex-start;
   padding: 50px;
-  background-color: #1F2197;
+  border: 1px solid #000;
 `;
 
 const StyledUl = styled.ul`
   list-style-type: none;
   margin-bottom: 50px;
+  border: 1px solid #000;
 `;
 
 const StyledLi = styled.li`
@@ -23,8 +24,7 @@ const StyledLi = styled.li`
 `;
 
 export const StyledLink = styled(NavLink)`
-  color: #FFF;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 48px;
   text-transform: uppercase;
   text-decoration: none;
@@ -35,42 +35,28 @@ export const StyledLink = styled(NavLink)`
   position: relative;
   transition: all ease-out 300ms;
 
-  &::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    left: 0;
-    bottom: 0;
-    background-image: linear-gradient(to right, #3335A0, #84A0CF)
-  }
-
   &:hover {
-    font-size: 12px;
+    font-size: 14px;
     opacity: 1;
   }
 
   &.active {
-    font-size: 12px;
+    font-size: 14px;
     opacity: 1;
   }
 `;
 
 export const StyledButton = styled.button`
-  color: #FFF;
-  background-color: #3335A0;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 48px;
   text-transform: uppercase;
   text-decoration: none;
   margin-top: auto;
-  border: 2px solid #3335A0;
   cursor: pointer;
   transition: all ease-out 300ms;
 
   &:hover {
-    font-size: 12px;
-    border: 2px solid #84A0CF;
+    font-size: 14px;
   }
 `;
 

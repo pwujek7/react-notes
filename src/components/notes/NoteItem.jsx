@@ -14,52 +14,50 @@ import {
 
 import { getDayOfMonth, getDayOfWeek, getMonth } from '../../utilities/date';
 
-const StyledNote = styled.div`
+const StyledFlexRow = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: no-wrap;
+`;
+
+const StyledNote = styled.div`
   width: 100%;
-  border-top: 5px solid #C5DDF4;
-  background-color: #DFECF9;
+  border: 1px solid #000;
 `;
 
 const StyledNoteBox = styled.div`
   position: relative;
   min-height: 100px;
-
-  &:first-child {
-    background-color: #F8FBFD;
-  }
+  border: 1px solid #000;
 `;
 
 const StyledDateBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: #5E91C5;
-  border-bottom: 5px solid #C5DDF4;
   position: absolute;
   top: -15px;
   right: 15px;
+  border: 1px solid #000;
 `;
 
-const StyledMenuBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: no-wrap;
+const StyledMenuWrapper = styled(StyledFlexRow)`
+  justify-content: space-between;
+  align-items: center;
   height: 50px;
-  background-color: #C5DDF4;
+  border: 1px solid #000;
+`;
+
+const StyledMenuBox = styled(StyledFlexRow)`
+  border: 1px solid #000;
 `;
 
 const StyledNoteContent = styled.p`
   height: 100px;
-  color: #5E91C5;
   margin: 15px auto;
   padding: 15px;
   overflow: hidden;
 `;
 
 const StyledDateText = styled.span`
-  color: #FFF;
+  display: block;
   text-align: center;
   font-size: 18px;
   font-weight: normal;
@@ -84,10 +82,9 @@ const StyledDateTextBig = styled(StyledDateText)`
 const StyledTitle = styled.p`
   font-size: 32px;
   font-weight: bold;
-  color: #5E91C5;
   position: absolute;
-  bottom: -15px;
-  left: 25px;
+  bottom: 0;
+  left: 30px;
 `;
 
 const StyledDeleteButton = styled.button`
@@ -154,22 +151,26 @@ export class NoteItem extends Component {
         </StyledNoteBox>
         <StyledNoteBox>
           <StyledNoteContent>{content}</StyledNoteContent>
-          <StyledMenuBox>
-            <Checkbox
-              name="isFinished"
-              onChange={this.changeFinish}
-              value={isFinished}
-              checked={isFinished}
-            />
-            <Checkbox
-              name="isImportant"
-              onChange={this.changeImportant}
-              value={isImportant}
-              checked={isImportant}
-            />
-            <StyledDeleteButton type="button" onClick={this.handleDelete} />
-            <StyledLink to={`/add-note/${id}`} />
-          </StyledMenuBox>
+          <StyledMenuWrapper>
+            <StyledMenuBox>
+              <Checkbox
+                name="isFinished"
+                onChange={this.changeFinish}
+                value={isFinished}
+                checked={isFinished}
+              />
+              <Checkbox
+                name="isImportant"
+                onChange={this.changeImportant}
+                value={isImportant}
+                checked={isImportant}
+              />
+            </StyledMenuBox>
+            <StyledMenuBox>
+              <StyledDeleteButton type="button" onClick={this.handleDelete} />
+              <StyledLink to={`/add-note/${id}`} />
+            </StyledMenuBox>
+          </StyledMenuWrapper>
         </StyledNoteBox>
       </StyledNote>
     );

@@ -31,24 +31,20 @@ const GridContainer = styled.div`
   height: 100vh;
 `;
 
-const StyledContainer = styled.div`
-  background-color: #FFF;
-`;
-
 const App = () => (
   <HashRouter>
     <Fragment>
       <GlobalStyle />
       <GridContainer>
         <Navigation />
-        <StyledContainer>
+        <div>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/add-note/:noteId" component={AddNote} />
             <Route path="/add-note" component={AddNote} />
             <Route path="/:filter" component={NotesList} />
           </Switch>
-        </StyledContainer>
+        </div>
       </GridContainer>
     </Fragment>
   </HashRouter>
