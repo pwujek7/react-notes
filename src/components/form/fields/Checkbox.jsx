@@ -1,5 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const StyledCheckbox = styled.input`
+  display: none;
+`;
+
+const StyledLabel = styled.label`
+  display: block;
+  width: 36px;
+  height: 36px;
+  background-image: url('src/resources/icons/ico_${props => props.htmlFor}.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  ${StyledCheckbox}:checked + & {
+    background-image: url('src/resources/icons/ico_${props => props.htmlFor}_checked.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+`;
 
 class Checkbox extends Component {
   handleCheckboxChange = () => {
@@ -11,8 +32,7 @@ class Checkbox extends Component {
 
     return (
       <div>
-        <label htmlFor={name}>{name}</label>
-        <input
+        <StyledCheckbox
           type="checkbox"
           name={name}
           id={name}
@@ -20,6 +40,7 @@ class Checkbox extends Component {
           value={value}
           checked={checked}
         />
+        <StyledLabel htmlFor={name} />
       </div>
     );
   }

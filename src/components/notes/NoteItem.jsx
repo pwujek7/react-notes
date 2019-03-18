@@ -98,6 +98,12 @@ const StyledDeleteButton = styled.button`
   width: 24px;
   height: 24px;
   background-image: url('src/resources/icons/ico_delete.svg');
+  cursor: pointer;
+  transition: .5s;
+
+  &:hover {
+    background-image: url('src/resources/icons/ico_delete_hover.svg');
+  }
 `;
 
 const StyledLink = styled(NavLink)`
