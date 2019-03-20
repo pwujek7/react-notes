@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 `;
 
@@ -31,20 +31,24 @@ const GridContainer = styled.div`
   height: 100vh;
 `;
 
+const StyledContainer = styled.div`
+  background-color: #fafafa;
+`;
+
 const App = () => (
   <HashRouter>
     <Fragment>
       <GlobalStyle />
       <GridContainer>
         <Navigation />
-        <div>
+        <StyledContainer>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/add-note/:noteId" component={AddNote} />
             <Route path="/add-note" component={AddNote} />
             <Route path="/:filter" component={NotesList} />
           </Switch>
-        </div>
+        </StyledContainer>
       </GridContainer>
     </Fragment>
   </HashRouter>
