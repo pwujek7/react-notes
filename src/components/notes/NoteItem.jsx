@@ -22,36 +22,38 @@ const StyledFlexRow = styled.div`
 
 const StyledNote = styled.div`
   width: 100%;
-  border: 1px solid #000;
+  background-color: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-bottom: 3px solid #5c6bc0;
+  box-shadow: 3px 3px 3px 0px rgba(224,224,224,1);
 `;
 
 const StyledNoteBox = styled.div`
   position: relative;
   min-height: 100px;
-  border: 1px solid #000;
 `;
 
 const StyledDateBox = styled.div`
+  color: #e8eaf6;
+  background-color: #5c6bc0;
   position: absolute;
   top: -15px;
   right: 15px;
-  border: 1px solid #000;
 `;
 
 const StyledMenuWrapper = styled(StyledFlexRow)`
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  border: 1px solid #000;
 `;
 
 const StyledMenuBox = styled(StyledFlexRow)`
-  border: 1px solid #000;
 `;
 
 const StyledNoteContent = styled.p`
   height: 100px;
-  margin: 15px auto;
+  background-color: #eeeeee;
+  margin: 15px 0 0 0;
   padding: 15px;
   overflow: hidden;
 `;
@@ -80,20 +82,22 @@ const StyledDateTextBig = styled(StyledDateText)`
 `;
 
 const StyledTitle = styled.p`
-  font-size: 32px;
-  font-weight: bold;
+  color: #e8eaf6;
+  background-color: #5c6bc0;
+  font-size: 24px;
+  padding: 0 20px 0 10px;
   position: absolute;
   bottom: 0;
-  left: 30px;
+  left: 0;
 `;
 
 const StyledDeleteButton = styled.button`
-  margin: 0;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px 0 0;
   padding: 0;
   border: none;
   background-color: transparent;
-  width: 24px;
-  height: 24px;
   background-image: url('src/resources/icons/ico_delete.svg');
   cursor: pointer;
   transition: .5s;
@@ -106,7 +110,14 @@ const StyledDeleteButton = styled.button`
 const StyledLink = styled(NavLink)`
   width: 24px;
   height: 24px;
+  margin: 0 10px 0 0;
   background-image: url('src/resources/icons/ico_edit.svg');
+  cursor: pointer;
+  transition: .5s;
+
+  &:hover {
+    background-image: url('src/resources/icons/ico_edit_hover.svg');
+  }
 `;
 
 export class NoteItem extends Component {
@@ -154,12 +165,14 @@ export class NoteItem extends Component {
           <StyledMenuWrapper>
             <StyledMenuBox>
               <Checkbox
+                id={id}
                 name="isFinished"
                 onChange={this.changeFinish}
                 value={isFinished}
                 checked={isFinished}
               />
               <Checkbox
+                id={id}
                 name="isImportant"
                 onChange={this.changeImportant}
                 value={isImportant}

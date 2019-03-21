@@ -10,13 +10,14 @@ const StyledLabel = styled.label`
   display: block;
   width: 36px;
   height: 36px;
-  background-image: url('src/resources/icons/ico_${props => props.htmlFor}.svg');
+  margin: 0 0 0 10px;
+  background-image: url('src/resources/icons/ico_${props => props.icoName}.svg');
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
 
   ${StyledCheckbox}:checked + & {
-    background-image: url('src/resources/icons/ico_${props => props.htmlFor}_checked.svg');
+    background-image: url('src/resources/icons/ico_${props => props.icoName}_checked.svg');
     background-repeat: no-repeat;
     background-position: center;
   }
@@ -28,25 +29,26 @@ class Checkbox extends Component {
   }
 
   render() {
-    const { name, checked, value } = this.props;
+    const { id, name, checked, value } = this.props;
 
     return (
       <div>
         <StyledCheckbox
           type="checkbox"
           name={name}
-          id={name}
+          id={`${name}-${id}`}
           onChange={this.handleCheckboxChange}
           value={value}
           checked={checked}
         />
-        <StyledLabel htmlFor={name} />
+        <StyledLabel htmlFor={`${name}-${id}`} icoName={name} />
       </div>
     );
   }
 }
 
 Checkbox.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.bool.isRequired,
