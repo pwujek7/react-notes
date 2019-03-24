@@ -10,10 +10,31 @@ import TextInput from './fields/TextInput';
 import DayPickerInput from './fields/DayPickerInput';
 
 const StyledForm = styled.form`
+  background-color: #f5f5f5;
+  border: 1px solid #e8eaf6;
+  padding: 25px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const StyledButton = styled.button`
+  color: #e8eaf6;
+  background-color: #7986cb;
+  border: none;
+  font-size: 14px; 
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin-left: auto;
+  display: block;
+  cursor: pointer;
+  transition: all ease-out .5s;
+
+  &:hover {
+    background-color: #5c6bc0;
+  }
 `;
 
 class NoteForm extends Component {
@@ -58,7 +79,7 @@ class NoteForm extends Component {
         <TextInput onChange={this.handleInputChange} value={title} name="title" />
         <TextInput onChange={this.handleInputChange} value={content} name="content" />
         <DayPickerInput onChange={this.handleDayChange} value={day} name="day" />
-        <button type="submit">SAVE</button>
+        <StyledButton type="submit">SAVE</StyledButton>
       </StyledForm>
     );
   }
