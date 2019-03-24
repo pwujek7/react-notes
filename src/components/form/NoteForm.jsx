@@ -12,7 +12,8 @@ import DayPickerInput from './fields/DayPickerInput';
 const StyledForm = styled.form`
   background-color: #f5f5f5;
   border: 1px solid #e8eaf6;
-  padding: 25px;
+  padding: 0 25px 25px 25px;
+  box-shadow: 3px 3px 3px 0px rgba(224,224,224,1);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -76,8 +77,8 @@ class NoteForm extends Component {
 
     return (
       <StyledForm onSubmit={this.handleSubmit}>
-        <TextInput onChange={this.handleInputChange} value={title} name="title" />
-        <TextInput onChange={this.handleInputChange} value={content} name="content" />
+        <TextInput onChange={this.handleInputChange} value={title} name="title" placeholder="type title here..." />
+        <TextInput onChange={this.handleInputChange} value={content} name="content" placeholder="type content here..." />
         <DayPickerInput onChange={this.handleDayChange} value={day} name="day" />
         <StyledButton type="submit">SAVE</StyledButton>
       </StyledForm>

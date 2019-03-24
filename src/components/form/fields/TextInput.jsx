@@ -1,5 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const StyledLabel = styled.label`
+  display: block;
+  margin: 25px 0 5px 10px;
+  text-transform: capitalize;
+  font-size: 14px;
+  color: #BDBDBD;
+`;
+
+const StyledTextInput = styled.input`
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  background: #fafafa;
+  border: none;
+  border-bottom: 3px solid #7986cb;
+  transition: all ease-out .5s;
+
+  &:hover {
+    border-bottom: 3px solid #5c6bc0;
+  }
+
+  &::placeholder {
+    color: #e8eaf6;
+    transition: all ease-out .5s;
+  }
+
+  &:focus::placeholder {
+    opacity: 0;
+    transform: translateX(150px);
+  }
+`;
 
 class TextInput extends Component {
   handleInputChange = (event) => {
@@ -7,17 +41,19 @@ class TextInput extends Component {
   }
 
   render() {
-    const { value, name } = this.props;
+    const { value, name, placeholder } = this.props;
 
     return (
       <div>
-        <label htmlFor={name}>{name}</label>
-        <input
+        <StyledLabel htmlFor={name}>{name}</StyledLabel>
+        <StyledTextInput
           name={name}
           onChange={this.handleInputChange}
           id={name}
           type="text"
           value={value}
+          placeholder={placeholder}
+          autoComplete="off"
         />
       </div>
     );
@@ -27,6 +63,7 @@ class TextInput extends Component {
 TextInput.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.bool
