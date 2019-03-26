@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { addNote, editNote } from '../../actions/notesActions';
 
 import TextInput from './fields/TextInput';
+import TextareaInput from './fields/TextareaInput';
 import DayPickerInput from './fields/DayPickerInput';
 
 const StyledForm = styled.form`
@@ -78,7 +79,7 @@ class NoteForm extends Component {
     return (
       <StyledForm onSubmit={this.handleSubmit}>
         <TextInput onChange={this.handleInputChange} value={title} name="title" placeholder="type title here..." />
-        <TextInput onChange={this.handleInputChange} value={content} name="content" placeholder="type content here..." />
+        <TextareaInput onChange={this.handleInputChange} value={content} name="content" placeholder="type content here..." />
         <DayPickerInput onChange={this.handleDayChange} value={day} name="day" />
         <StyledButton type="submit">SAVE</StyledButton>
       </StyledForm>
