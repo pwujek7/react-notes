@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledLabel = styled.label`
-  display: block;
-  margin: 25px 0 5px 10px;
-  text-transform: capitalize;
-  font-size: 14px;
-  color: #BDBDBD;
-`;
+import { StyledLabel } from '../../common-styled/Label';
 
 const StyledTextarea = styled.textarea`
   display: block;

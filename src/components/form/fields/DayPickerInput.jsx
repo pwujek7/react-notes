@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import DayPicker from 'react-day-picker';
 import './dayPickerStyles.css';
 
-const DISABLED_DAYS = { before: new Date() };
+import { StyledLabel } from '../../common-styled/Label';
 
-const StyledLabel = styled.label`
-  display: block;
-  margin: 25px 0 5px 10px;
-  text-transform: capitalize;
-  font-size: 14px;
-  color: #BDBDBD;
-`;
+const DISABLED_DAYS = { before: new Date() };
 
 class DayPickerInput extends Component {
   state = {

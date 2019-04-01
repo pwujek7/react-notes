@@ -5,6 +5,7 @@ import uuidv1 from 'uuid';
 import styled from 'styled-components';
 
 import { addNote, editNote } from '../../actions/notesActions';
+import { StyledButton } from '../common-styled/Button';
 
 import TextInput from './fields/TextInput';
 import TextareaInput from './fields/TextareaInput';
@@ -21,22 +22,11 @@ const StyledForm = styled.form`
   transform: translate(-50%, -50%);
 `;
 
-const StyledButton = styled.button`
-  color: #e8eaf6;
-  background-color: #7986cb;
-  border: none;
+const StyledSubmitButton = styled(StyledButton)`
   font-size: 14px; 
-  text-transform: uppercase;
-  text-decoration: none;
   padding: 10px 20px;
   margin-left: auto;
   display: block;
-  cursor: pointer;
-  transition: all ease-out .5s;
-
-  &:hover {
-    background-color: #5c6bc0;
-  }
 `;
 
 class NoteForm extends Component {
@@ -81,7 +71,7 @@ class NoteForm extends Component {
         <TextInput onChange={this.handleInputChange} value={title} name="title" placeholder="type title here..." />
         <TextareaInput onChange={this.handleInputChange} value={content} name="content" placeholder="type content here..." />
         <DayPickerInput onChange={this.handleDayChange} value={day} name="day" />
-        <StyledButton type="submit">SAVE</StyledButton>
+        <StyledSubmitButton type="submit">SAVE</StyledSubmitButton>
       </StyledForm>
     );
   }

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { StyledButton } from '../common-styled/Button';
+
 import { clearLocalStorage } from '../../utilities/localStorage';
 
 const StyledNav = styled.nav`
@@ -44,21 +46,11 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
-export const StyledButton = styled.button`
-  color: #e8eaf6;
-  background-color: #7986cb;
-  border: none;
+export const StyledNavButton = styled(StyledButton)`
   font-size: 16px;
   line-height: 48px; 
-  text-transform: uppercase;
-  text-decoration: none;
   margin-top: auto;
   cursor: pointer;
-  transition: all ease-out .5s;
-
-  &:hover {
-    background-color: #5c6bc0;
-  }
 `;
 
 class Navigation extends Component {
@@ -89,7 +81,7 @@ class Navigation extends Component {
             <StyledLink activeClassName="active" to="/add-note">Add note</StyledLink>
           </StyledLi>
         </StyledUl>
-        <StyledButton type="button" onClick={this.handleClick}>Delete all notes</StyledButton>
+        <StyledNavButton type="button" onClick={this.handleClick}>Delete all notes</StyledNavButton>
       </StyledNav>
     );
   }

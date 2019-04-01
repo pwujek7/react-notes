@@ -7,7 +7,7 @@ import NoteItem from './NoteItem';
 
 import { getFilteredNotes } from '../../utilities/notes';
 
-const NotesGrid = styled.div`
+const StyledNotesList = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 50px;
@@ -15,13 +15,13 @@ const NotesGrid = styled.div`
 `;
 
 const NotesList = ({ notes }) => (
-  <NotesGrid>
+  <StyledNotesList>
     {
       notes && notes.map(note => (
         <NoteItem key={note.id} note={note} />
       ))
     }
-  </NotesGrid>
+  </StyledNotesList>
 );
 
 NotesList.propTypes = {

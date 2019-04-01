@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Checkbox from '../form/fields/Checkbox';
+import { StyledFlexRow } from '../common-styled/FlexRow';
 
 import {
   toggleFinish,
@@ -14,11 +15,6 @@ import {
 
 import { getDayOfMonth, getDayOfWeek, getMonth } from '../../utilities/date';
 
-const StyledFlexRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: no-wrap;
-`;
 
 const StyledNote = styled.div`
   width: 100%;
