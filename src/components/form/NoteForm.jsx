@@ -11,6 +11,8 @@ import TextInput from './fields/TextInput';
 import TextareaInput from './fields/TextareaInput';
 import DayPickerInput from './fields/DayPickerInput';
 
+import { getRandomInt } from '../../utilities/random';
+
 const StyledForm = styled.form`
   background-color: #f5f5f5;
   border: 1px solid #e8eaf6;
@@ -53,7 +55,8 @@ class NoteForm extends Component {
       editNote({ id, title, content, day });
     } else {
       const id = uuidv1();
-      addNote({ id, title, content, day });
+      const patternId = getRandomInt(4);
+      addNote({ id, title, content, day, patternId });
     }
 
     this.setState({

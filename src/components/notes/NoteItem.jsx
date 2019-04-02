@@ -18,7 +18,8 @@ import { getDayOfMonth, getDayOfWeek, getMonth } from '../../utilities/date';
 
 const StyledNote = styled.div`
   width: 100%;
-  background-color: #fafafa;
+  background-image: url('src/resources/patterns/pattern_${props => props.patternId}.png');
+  background-repeat: repeat;
   border: 1px solid #e0e0e0;
   border-bottom: 3px solid #5c6bc0;
   box-shadow: 3px 3px 3px 0px rgba(224,224,224,1);
@@ -30,17 +31,20 @@ const StyledNoteBox = styled.div`
 `;
 
 const StyledDateBox = styled.div`
+  width: 100px;
   color: #e8eaf6;
   background-color: #5c6bc0;
+  border-bottom: 3px solid #7986cb;
   position: absolute;
   top: -15px;
   right: 15px;
 `;
 
 const StyledMenuWrapper = styled(StyledFlexRow)`
+  height: 50px;
+  background-color: #fafafa;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
 `;
 
 const StyledMenuBox = styled(StyledFlexRow)`
@@ -48,43 +52,45 @@ const StyledMenuBox = styled(StyledFlexRow)`
 
 const StyledNoteContent = styled.p`
   height: 100px;
-  background-color: #eeeeee;
-  margin: 15px 0 0 0;
-  padding: 15px;
+  color: #212121;
+  background-color: #fafafa;
+  padding: 5px 15px 15px 15px;
   overflow: hidden;
 `;
 
 const StyledDateText = styled.span`
   display: block;
+  color: #fafafa;
   text-align: center;
   font-size: 18px;
   font-weight: normal;
+  text-align: right;
+  margin-right: 15px;
 
   &:nth-child(2) {
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
   &:nth-child(3) {
     font-size: 12px;
-    text-transform: lowercase;
+    font-weight: 700;
+    text-transform: uppercase;
     margin-bottom: 10px;
   }
 `;
 
 const StyledDateTextBig = styled(StyledDateText)`
   font-size: 64px;
+  line-height: 64px;
   font-weight: bold;
-  margin: 0 15px;
+  padding-top: 10px;
 `;
 
 const StyledTitle = styled.p`
-  color: #e8eaf6;
-  background-color: #5c6bc0;
+  color: #5c6bc0;
   font-size: 24px;
-  padding: 0 20px 0 10px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  font-weight: 700;
+  padding: 0 15px 5px 15px;
 `;
 
 const StyledDeleteButton = styled.button`
@@ -141,15 +147,14 @@ export class NoteItem extends Component {
 
   render() {
     const { isFinished, isImportant } = this.state;
-    const { id, title, content, day } = this.props.note;
+    const { id, title, content, day, patternId } = this.props.note;
     const dayOfMonth = getDayOfMonth(day);
     const dayOfWeek = getDayOfWeek(day);
     const month = getMonth(day);
 
     return (
-      <StyledNote>
+      <StyledNote patternId={patternId}>
         <StyledNoteBox>
-          <StyledTitle>{title}</StyledTitle>
           <StyledDateBox>
             <StyledDateTextBig>{dayOfMonth}</StyledDateTextBig>
             <StyledDateText>{month}</StyledDateText>
@@ -157,6 +162,7 @@ export class NoteItem extends Component {
           </StyledDateBox>
         </StyledNoteBox>
         <StyledNoteBox>
+          <StyledTitle>{title}</StyledTitle>
           <StyledNoteContent>{content}</StyledNoteContent>
           <StyledMenuWrapper>
             <StyledMenuBox>
