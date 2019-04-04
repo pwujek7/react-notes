@@ -15,3 +15,7 @@ export const getMonth = (date) => {
   const jsDate = new Date(date);
   return MONTHS[jsDate.getMonth()];
 };
+
+export const convertToDate = (date) => {
+  return new Date(date);
+};

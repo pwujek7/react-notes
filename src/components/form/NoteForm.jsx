@@ -12,6 +12,7 @@ import TextareaInput from './fields/TextareaInput';
 import DayPickerInput from './fields/DayPickerInput';
 
 import { getRandomInt } from '../../utilities/random';
+import { convertToDate } from '../../utilities/date';
 
 const StyledForm = styled.form`
   background-color: #f5f5f5;
@@ -35,7 +36,8 @@ class NoteForm extends Component {
   state = {
     title: !this.props.note.length ? '' : this.props.note[0].title,
     content: !this.props.note.length ? '' : this.props.note[0].content,
-    day: !this.props.note.length ? '' : this.props.note[0].day
+    day: !this.props.note.length ? '' : this.props.note[0].day,
+    patternId: !this.props.note.length ? '' : this.props.note[0].patternId
   }
 
   handleInputChange = (event) => {
@@ -48,11 +50,11 @@ class NoteForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { title, content, day } = this.state;
+    const { title, content, day, patternId } = this.state;
     const { noteId: id, addNote, editNote } = this.props;
 
     if (id) {
-      editNote({ id, title, content, day });
+      editNote({ id, title, content, day, patternId });
     } else {
       const id = uuidv1();
       const patternId = getRandomInt(4);
@@ -68,12 +70,13 @@ class NoteForm extends Component {
 
   render() {
     const { title, content, day } = this.state;
+    const date = convertToDate(day);
 
     return (
       <StyledForm onSubmit={this.handleSubmit}>
         <TextInput onChange={this.handleInputChange} value={title} name="title" placeholder="type title here..." />
         <TextareaInput onChange={this.handleInputChange} value={content} name="content" placeholder="type content here..." />
-        <DayPickerInput onChange={this.handleDayChange} value={day} name="day" />
+        <DayPickerInput onChange={this.handleDayChange} value={date} name="day" />
         <StyledSubmitButton type="submit">SAVE</StyledSubmitButton>
       </StyledForm>
     );

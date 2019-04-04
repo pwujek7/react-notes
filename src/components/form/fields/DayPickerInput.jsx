@@ -10,7 +10,7 @@ const DISABLED_DAYS = { before: new Date() };
 
 class DayPickerInput extends Component {
   state = {
-    selectedDay: null
+    selectedDay: []
   }
 
   handleDayClick = (day, { selected, disabled }) => {
@@ -44,7 +44,10 @@ class DayPickerInput extends Component {
 DayPickerInput.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.instanceOf(Date)
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(Date)
+  ]),
 };
 
 export default DayPickerInput;
