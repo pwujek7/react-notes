@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import DayPicker from 'react-day-picker';
 
 import DayPickerInput from './DayPickerInput';
+import { StyledLabel } from '../../common-styled/Label';
 
 describe('<DayPickerInput />', () => {
   const props = {
@@ -21,7 +22,7 @@ describe('<DayPickerInput />', () => {
   it('renders without errors and with proper elements', () => {
     const dayPickerInput = shallow(<DayPickerInput {...props} />);
 
-    expect(dayPickerInput.find('label')).toHaveLength(1);
+    expect(dayPickerInput.find(StyledLabel)).toHaveLength(1);
     expect(dayPickerInput.find(DayPicker)).toHaveLength(1);
   });
 

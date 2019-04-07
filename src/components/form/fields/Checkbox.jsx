@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledCheckbox = styled.input`
+export const StyledCheckbox = styled.input`
   display: none;
 `;
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
   display: block;
   width: 36px;
   height: 36px;

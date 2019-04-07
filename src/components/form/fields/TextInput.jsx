@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { StyledLabel } from '../../common-styled/Label';
 
-const StyledTextInput = styled.input`
+export const StyledTextInput = styled.input`
   display: block;
   width: 100%;
   padding: 10px 15px;

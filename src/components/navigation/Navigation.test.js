@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Navigation, { StyledLink, StyledButton } from './Navigation';
+import Navigation, { StyledLink, StyledNavButton } from './Navigation';
 
 describe('<Navigation />', () => {
   const navigation = shallow(<Navigation />);
@@ -12,7 +12,7 @@ describe('<Navigation />', () => {
 
   it('renders navigation list with 6 links', () => {
     expect(navigation.find(StyledLink)).toHaveLength(6);
-    expect(navigation.find(StyledButton)).toHaveLength(1);
+    expect(navigation.find(StyledNavButton)).toHaveLength(1);
   });
 
   it('renders navigation links and each of the link has "to" property defined', () => {
