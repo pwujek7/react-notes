@@ -8,20 +8,20 @@ const StyledTextarea = styled.textarea`
   display: block;
   width: 100%;
   padding: 10px 15px;
-  font-size: 16px;
-  background: #fafafa;
+  font-size: ${({ theme }) => theme.font.size.m};
+  background: ${({ theme }) => theme.color.lightGray};
   border: none;
-  border-bottom: 3px solid #7986cb;
+  border-bottom: 3px solid ${({ theme }) => theme.color.lightBlue};
   resize: none;
   overflow: hidden;
   transition: all ease-out .5s;
 
   &:hover {
-    border-bottom: 3px solid #5c6bc0;
+    border-bottom: 3px solid ${({ theme }) => theme.color.blue};
   }
 
   &::placeholder {
-    color: #e8eaf6;
+    color: ${({ theme }) => theme.color.blueGray};
     transition: all ease-out .5s;
   }
 

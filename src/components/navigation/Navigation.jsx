@@ -11,9 +11,9 @@ const StyledNav = styled.nav`
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  background-color: #f5f5f5;
+  background-color: ${({ theme }) => theme.color.gray};
   padding: 50px 0;
-  border-right: 1px solid #e8eaf6;
+  border-right: 1px solid ${({ theme }) => theme.color.blueGray};
 `;
 
 const StyledUl = styled.ul`
@@ -26,8 +26,8 @@ const StyledLi = styled.li`
 
 export const StyledLink = styled(NavLink)`
   display: block;
-  color: #BDBDBD;
-  font-size: 16px;
+  color: ${({ theme }) => theme.color.lightBlack};
+  font-size: ${({ theme }) => theme.font.size.m};
   line-height: 48px;
   text-transform: uppercase;
   text-decoration: none;
@@ -36,18 +36,18 @@ export const StyledLink = styled(NavLink)`
   transition: all ease-out .5s;
 
   &:hover {
-    color: #212121;
-    background-color: #e8eaf6;
+    color: ${({ theme }) => theme.color.black};
+    background-color: ${({ theme }) => theme.color.blueGray};
   }
 
   &.active {
-    color: #212121;
-    background-color: #e8eaf6;
+    color: ${({ theme }) => theme.color.black};
+    background-color: ${({ theme }) => theme.color.blueGray};
   }
 `;
 
 export const StyledNavButton = styled(StyledButton)`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.font.size.m};
   line-height: 48px; 
   margin-top: auto;
   cursor: pointer;

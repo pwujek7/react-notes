@@ -20,8 +20,8 @@ const StyledNote = styled.div`
   width: 100%;
   background-image: url('src/resources/patterns/pattern_${props => props.patternId}.png');
   background-repeat: repeat;
-  border: 1px solid #e0e0e0;
-  border-bottom: 3px solid #5c6bc0;
+  border: 1px solid ${({ theme }) => theme.color.darkGray};
+  border-bottom: 3px solid ${({ theme }) => theme.color.blue};
   box-shadow: 3px 3px 3px 0px rgba(224,224,224,1);
 `;
 
@@ -32,9 +32,9 @@ const StyledNoteBox = styled.div`
 
 const StyledDateBox = styled.div`
   width: 100px;
-  color: #e8eaf6;
-  background-color: #5c6bc0;
-  border-bottom: 3px solid #7986cb;
+  color: ${({ theme }) => theme.color.blueGray};
+  background-color: ${({ theme }) => theme.color.blue};
+  border-bottom: 3px solid ${({ theme }) => theme.color.lightBlue};
   position: absolute;
   top: -15px;
   right: 15px;
@@ -42,7 +42,7 @@ const StyledDateBox = styled.div`
 
 const StyledMenuWrapper = styled(StyledFlexRow)`
   height: 50px;
-  background-color: #fafafa;
+  background-color: ${({ theme }) => theme.color.lightGray};
   justify-content: space-between;
   align-items: center;
 `;
@@ -52,18 +52,18 @@ const StyledMenuBox = styled(StyledFlexRow)`
 
 const StyledNoteContent = styled.p`
   height: 100px;
-  color: #212121;
-  background-color: #fafafa;
+  color: ${({ theme }) => theme.color.black};
+  background-color: ${({ theme }) => theme.color.lightGray};
   padding: 5px 15px 15px 15px;
   overflow: hidden;
 `;
 
 const StyledDateText = styled.span`
   display: block;
-  color: #fafafa;
+  color: ${({ theme }) => theme.color.lightGray};
   text-align: center;
-  font-size: 18px;
-  font-weight: normal;
+  font-size: ${({ theme }) => theme.font.size.l};
+  font-weight: ${({ theme }) => theme.font.weight.normal};
   text-align: right;
   margin-right: 15px;
 
@@ -72,25 +72,26 @@ const StyledDateText = styled.span`
   }
 
   &:nth-child(3) {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: ${({ theme }) => theme.font.size.xs};
+    font-weight: ${({ theme }) => theme.font.weight.bold};
     text-transform: uppercase;
     margin-bottom: 10px;
   }
 `;
 
 const StyledDateTextBig = styled(StyledDateText)`
-  font-size: 64px;
+  font-size: ${({ theme }) => theme.font.size.xxl};
   line-height: 64px;
-  font-weight: bold;
+  font-weight: ${({ theme }) => theme.font.weight.bold};
   padding-top: 10px;
 `;
 
 const StyledTitle = styled.p`
-  color: #5c6bc0;
-  font-size: 24px;
-  font-weight: 700;
+  color: ${({ theme }) => theme.color.blue};
+  font-size: ${({ theme }) => theme.font.size.xl};
+  font-weight: ${({ theme }) => theme.font.weight.bold};
   padding: 0 15px 5px 15px;
+  margin: 10px 0 0 0;
 `;
 
 const StyledDeleteButton = styled.button`

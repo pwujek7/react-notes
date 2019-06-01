@@ -7,7 +7,9 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import GlobalStyle from './theme/globalStyle';
+import { theme } from './theme/theme';
 
 import store from './store/store';
 
@@ -16,15 +18,6 @@ import Home from './components/home/Home';
 import NotesList from './components/notes/NotesList';
 import AddNote from './components/addNote/AddNote';
 
-const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-  }
-`;
-
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 25% 75%;
@@ -32,25 +25,27 @@ const GridContainer = styled.div`
 `;
 
 const StyledContainer = styled.div`
-  background-color: #fafafa;
+  background-color: ${({ theme }) => theme.color.lightGray};
 `;
 
 const App = () => (
   <HashRouter>
-    <Fragment>
-      <GlobalStyle />
-      <GridContainer>
-        <Navigation />
-        <StyledContainer>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/add-note/:noteId" component={AddNote} />
-            <Route path="/add-note" component={AddNote} />
-            <Route path="/:filter" component={NotesList} />
-          </Switch>
-        </StyledContainer>
-      </GridContainer>
-    </Fragment>
+    <ThemeProvider theme={theme}>
+      <Fragment>
+        <GlobalStyle />
+        <GridContainer>
+          <Navigation />
+          <StyledContainer>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/add-note/:noteId" component={AddNote} />
+              <Route path="/add-note" component={AddNote} />
+              <Route path="/:filter" component={NotesList} />
+            </Switch>
+          </StyledContainer>
+        </GridContainer>
+      </Fragment>
+    </ThemeProvider>
   </HashRouter>
 );
 

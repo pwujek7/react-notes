@@ -16,8 +16,8 @@ import { getRandomInt } from '../../utilities/random';
 import { convertToDate } from '../../utilities/date';
 
 const StyledForm = styled.form`
-  background-color: #f5f5f5;
-  border: 1px solid #e8eaf6;
+  background-color: ${({ theme }) => theme.color.gray};
+  border: 1px solid ${({ theme }) => theme.color.blueGray};
   padding: 0 25px 25px 25px;
   box-shadow: 3px 3px 3px 0px rgba(224,224,224,1);
   position: absolute;
@@ -27,7 +27,7 @@ const StyledForm = styled.form`
 `;
 
 const StyledSubmitButton = styled(StyledButton)`
-  font-size: 14px; 
+  font-size: ${({ theme }) => theme.font.size.s}; 
   padding: 10px 20px;
   margin-left: auto;
   display: block;

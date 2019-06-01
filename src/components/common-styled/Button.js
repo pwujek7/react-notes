@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
-  color: #e8eaf6;
-  background-color: #7986cb;
+  color: ${({ theme }) => theme.color.blueGray};
+  background-color: ${({ theme }) => theme.color.lightBlue};
   border: none;
   text-transform: uppercase;
   text-decoration: none;
@@ -10,6 +10,6 @@ export const StyledButton = styled.button`
   transition: all ease-out .5s;
 
   &:hover {
-    background-color: #5c6bc0;
+    background-color: ${({ theme }) => theme.color.blue};
   }
 `;
