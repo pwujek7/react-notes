@@ -1,4 +1,9 @@
-import { getDayOfMonth, getDayOfWeek, getMonth } from './date';
+import {
+  getDayOfMonth,
+  getDayOfWeek,
+  getMonth,
+  convertToDate
+} from './date';
 
 describe('date utils', () => {
   const date = new Date(2021, 1, 1);
@@ -19,5 +24,11 @@ describe('date utils', () => {
     const result = getMonth(date);
 
     expect(result).toEqual('February');
+  });
+
+  it('calls convertToDate() and returns proper date', () => {
+    const result = convertToDate(date);
+
+    expect(result).toEqual(date);
   });
 });

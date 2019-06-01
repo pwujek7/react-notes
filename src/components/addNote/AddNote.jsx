@@ -9,9 +9,9 @@ const StyledAddNote = styled.div`
   height: 100%;
 `;
 
-const AddNote = (props) => (
+const AddNote = ({ match }) => (
   <StyledAddNote>
-    <NoteForm noteId={props.match.params.noteId} />
+    <NoteForm noteId={match.params.noteId} />
   </StyledAddNote>
 );
 

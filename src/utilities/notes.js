@@ -12,3 +12,7 @@ export const getFilteredNotes = (notes, filter) => {
       return null;
   }
 };
+
+export const getNote = (state, ownProps) => {
+  return state.notes.filter(note => note.id === ownProps.noteId);
+};

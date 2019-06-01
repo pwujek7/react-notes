@@ -11,6 +11,7 @@ import TextInput from './fields/TextInput';
 import TextareaInput from './fields/TextareaInput';
 import DayPickerInput from './fields/DayPickerInput';
 
+import { getNote } from '../../utilities/notes';
 import { getRandomInt } from '../../utilities/random';
 import { convertToDate } from '../../utilities/date';
 
@@ -34,10 +35,10 @@ const StyledSubmitButton = styled(StyledButton)`
 
 class NoteForm extends Component {
   state = {
-    title: !this.props.note.length ? '' : this.props.note[0].title,
-    content: !this.props.note.length ? '' : this.props.note[0].content,
-    day: !this.props.note.length ? '' : this.props.note[0].day,
-    patternId: !this.props.note.length ? '' : this.props.note[0].patternId
+    title: this.props.note.length ? this.props.note[0].title : '',
+    content: this.props.note.length ? this.props.note[0].content : '',
+    day: this.props.note.length ? this.props.note[0].day : '',
+    patternId: this.props.note.length ? this.props.note[0].patternId : ''
   }
 
   handleInputChange = (event) => {
@@ -92,7 +93,7 @@ NoteForm.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    note: state.notes.filter(note => note.id === ownProps.noteId)
+    note: getNote(state, ownProps)
   };
 };
 
