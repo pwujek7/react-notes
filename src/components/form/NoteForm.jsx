@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import uuidv1 from 'uuid';
 import styled from 'styled-components';
 
 import { addNote, editNote } from '../../actions/notesActions';
-import { StyledButton } from '../common-styled/Button';
+import { StyledButtonPrimary } from '../common-styled/Button';
 
 import TextInput from './fields/TextInput';
 import TextareaInput from './fields/TextareaInput';
@@ -26,7 +27,7 @@ const StyledForm = styled.form`
   transform: translate(-50%, -50%);
 `;
 
-const StyledSubmitButton = styled(StyledButton)`
+const StyledSubmitButton = styled(StyledButtonPrimary)`
   font-size: ${({ theme }) => theme.font.size.s}; 
   padding: 10px 20px;
   margin-left: auto;
@@ -52,7 +53,7 @@ class NoteForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { title, content, day, patternId } = this.state;
-    const { noteId: id, addNote, editNote } = this.props;
+    const { noteId: id, addNote, editNote, history } = this.props;
 
     if (id) {
       editNote({ id, title, content, day, patternId });
@@ -67,6 +68,8 @@ class NoteForm extends Component {
       content: '',
       day: null
     });
+
+    history.push('/all');
   }
 
   render() {
@@ -88,7 +91,8 @@ NoteForm.propTypes = {
   addNote: PropTypes.func.isRequired,
   editNote: PropTypes.func,
   note: PropTypes.array,
-  noteId: PropTypes.string
+  noteId: PropTypes.string,
+  history: PropTypes.object
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -102,4 +106,4 @@ const mapDispatchToProps = {
   editNote
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NoteForm);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NoteForm));

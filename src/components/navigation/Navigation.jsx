@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { StyledButton } from '../common-styled/Button';
+import { StyledButtonPrimary } from '../common-styled/Button';
+import Modal from '../modal/Modal';
 
 import { clearLocalStorage } from '../../utilities/localStorage';
 
@@ -46,7 +47,7 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
-export const StyledNavButton = styled(StyledButton)`
+export const StyledNavButton = styled(StyledButtonPrimary)`
   font-size: ${({ theme }) => theme.font.size.m};
   line-height: 48px; 
   margin-top: auto;
@@ -54,6 +55,14 @@ export const StyledNavButton = styled(StyledButton)`
 `;
 
 class Navigation extends Component {
+  state = {
+    isModalOpened: false
+  }
+
+  toggleModal = () => {
+    this.setState(prevState => ({ isModalOpened: !prevState.isModalOpened }));
+  }
+
   handleClick = () => {
     clearLocalStorage();
   }
@@ -81,7 +90,12 @@ class Navigation extends Component {
             <StyledLink activeClassName="active" to="/add-note">Add note</StyledLink>
           </StyledLi>
         </StyledUl>
-        <StyledNavButton type="button" onClick={this.handleClick}>Delete all notes</StyledNavButton>
+        <Modal
+          isOpened={this.state.isModalOpened}
+          onAccept={this.handleClick}
+          onCancel={this.toggleModal}
+        />
+        <StyledNavButton type="button" onClick={this.toggleModal}>Delete all notes</StyledNavButton>
       </StyledNav>
     );
   }
